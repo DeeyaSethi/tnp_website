@@ -30,10 +30,32 @@ const othersSchema = new Schema({
 });
 
 const UserInfoSchema = new Schema({
-    personal: personalSchema,
-    academic: academicSchema,
-    others: othersSchema
+    personal: {
+        email: { type: String, required: true },
+        gender: { type: String, enum: ["male", "female", "other"], required: true },
+        dob: { type: Date, required: true },
+        mobile: { type: String, required: true },
+        rollNumber: { type: String, required: true },
+        state: { type: String, required: true },
+        fathersName: { type: String, required: true },
+        mothersName: { type: String, required: true },
+        guardianPhoneNo: { type: String, required: true },
+        debarred: { type: Boolean, required: true },
+        address: { type: String, required: true },
+        languages: { type: [String], required: true }
+    },
+    academic: {
+        collegeName: { type: String, required: true },
+        aggregateCgpa: { type: Number, required: true },
+        activeBacks: { type: Number, required: true },
+        deadBacks: { type: Number, required: true }
+    },
+    others: {
+        majorProjectLink: { type: String },
+        positionOfResponsibility: { type: String },
+        resumeLink: { type: String }
+    }
 });
 
 const UserInfo = mongoose.model('UserInfo', UserInfoSchema);
-module.exports = UserInfo;
+module.exports = { UserInfo, personalSchema };

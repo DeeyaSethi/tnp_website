@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require("../models/User");
+const jwt = require('jsonwebtoken');
+
 const signup = async (req, res, next) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -10,21 +12,22 @@ const signup = async (req, res, next) => {
             role: req.body.role,
             username: req.body.username,
             password: hashedPassword
-        };
+    };
 
 
         //we need to save in mongo
         const user = new User(userObject);
         const result = await user.save();
-        const email = user.email;
 
+        const email = user.email;
         const accessToken = jwt.sign({ user_id: user._id, email }, "deeya");
         user.token = accessToken;
         console.log(user.token);
         res.status(200).json(user);
         
         //res.status(201).send({ message: 'User created successfully', result });
-    } catch {
+    } 
+    catch {
         res.status(500).send();
     }
 }

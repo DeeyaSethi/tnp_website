@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const {updateMyInfo} = require("../controllers/myInfoController") 
 const auth = require("../middlewares/auth.js")
 
