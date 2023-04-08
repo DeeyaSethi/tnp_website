@@ -35,7 +35,9 @@ const saveJob = async (req, res) => {
             cgpaCutoff: req.body.cgpaCutoff,
             tenthCutoff: req.body.tenthCutoff,
             twelfthCutoff: req.body.twelfthCutoff,
-            eligibility: req.body.eligibility
+            eligibleBranches: req.body.eligibleBranches,
+            eligibleDegrees: req.body.eligibleDegrees,
+            eligiblePassoutYears: req.body.eligiblePassoutYears
         };
         //save the job in mongo
         const job = new Job(jobObject);
@@ -50,7 +52,7 @@ const saveJob = async (req, res) => {
 
 const getJobs = async (req, res) => {
     //get job from mongo
-    const jobs= await Job.find({});
+    const jobs = await Job.find({});
     console.log(jobs);
     res.status(200).json(jobs);
 }

@@ -58,9 +58,20 @@ const jobSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  eligibility: {
-    type: String,
+  eligibleBranches: {
+    type: [String], 
     required: true
+  },
+  eligibleDegrees: {
+    type: [String], 
+    required: true
+  },
+  eligiblePassoutYears: {
+    type: [Number], 
+    required: true
+  },
+  applicants:{
+    type: [String] //email ids of users
   }
 });
 

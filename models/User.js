@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const UserInfoSchema= require("./MyInfo.js")
 const UserSchema = new Schema({
+  
   email: {
     type: String,
     required: true
@@ -31,6 +32,10 @@ const UserSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'UserInfo', // The name of the related model
     default: null, // Set the default value to null
+  },
+
+  appliedJobs: {
+    type: [String], //list of job ID
   }
   
 });

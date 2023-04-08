@@ -7,31 +7,34 @@ const updateMyInfo = async (req, res, next) => {
     try {
         console.log("creating user info")
         const userInfo = new UserInfo({
-            personal: {
-                email: req.body.email,
-                gender: req.body.gender,
-                dob: req.body.dob,
-                mobile: req.body.mobile,
-                rollNumber: req.body.rollNumber,
-                state: req.body.state,
-                fathersName: req.body.fathersName,
-                mothersName: req.body.mothersName,
-                guardianPhoneNo: req.body.guardianPhoneNo,
-                debarred: req.body.debarred,
-                address: req.body.address,
-                languages: req.body.languages
-            },
-            academic: {
-                collegeName: req.body.collegeName,
-                aggregateCgpa: req.body.cgpa,
-                activeBacks: req.body.activeBacks,
-                deadBacks: req.body.deadBacks
-            },
-            others: {
-                majorProjectLink: req.body.majorProjectLink,
-                positionOfResponsibility: req.body.positionOfResponsibility,
-                resumeLink: req.body.resumeLink
-            }
+            // personal: {
+            email: req.body.email,
+            gender: req.body.gender,
+            dob: req.body.dob,
+            mobile: req.body.mobile,
+            rollNumber: req.body.rollNumber,
+            state: req.body.state,
+            fathersName: req.body.fathersName,
+            mothersName: req.body.mothersName,
+            guardianPhoneNo: req.body.guardianPhoneNo,
+            debarred: req.body.debarred,
+            address: req.body.address,
+            languages: req.body.languages,
+
+            // academic: {
+            collegeName: req.body.collegeName,
+            branch: req.body.branch,
+            degree: req.body.degree,
+            passoutYear: req.body.passoutYear,
+            aggregateCgpa: req.body.cgpa,
+            activeBacks: req.body.activeBacks,
+            deadBacks: req.body.deadBacks,
+
+            //others: {
+            majorProjectLink: req.body.majorProjectLink,
+            positionOfResponsibility: req.body.positionOfResponsibility,
+            resumeLink: req.body.resumeLink
+
         });
 
         console.log(userInfo);
@@ -47,7 +50,7 @@ const updateMyInfo = async (req, res, next) => {
             .exec()
 
         res.status(201).send({ message: 'User information updated successfully' });
-    } catch(err) {
+    } catch (err) {
         res.status(500).send(err);
     }
 }
